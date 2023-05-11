@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 1440px;
+  height: 800px;
+  padding: 40px 90px 40px 90px;
+  background: url(./image/bg1.png) no-repeat;
+  background-position: center center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.header_buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  height: 44px;
+  padding: 0 15px 0 15px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(174, 181, 185, 0.5);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+.btn:hover {
+  cursor: pointer;
+  background: rgba(150, 157, 161, 0.5);
+}
+
+.btn_voice:hover {
+  cursor: pointer;
+}
+
+.btn_language span {
+  margin-right: 10px;
+}
+
+.temperature_buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn_cel {
+  border-radius: 5px 0 0 5px;
+}
+
+.btn_far {
+  border-radius: 0 5px 5px 0;
+}
+
+.active {
+  background: rgba(76, 82, 85, 0.4);
+  color: rgba(255, 255, 255, 0.4);
+}
+.active:hover {
+  background: rgba(76, 82, 85, 0.4);
+  cursor: default;
+}
+
+.header_search {
+  height: 44px;
+  padding-right: 101px;
+  position: relative;
+}
+.header_search input {
+  width: 274px;
+  height: 100%;
+  background: rgba(76, 82, 85, 0.4);
+  border: 1px solid rgba(228, 227, 227, 0.2);
+  padding-left: 15px;
+  padding-right: 43px;
+  font-size: 14px;
+  line-height: 21px;
+  border-radius: 5px 0 0 5px;
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+.header_search input::-moz-placeholder {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+.header_search input:-ms-input-placeholder {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+.header_search input::placeholder {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+.header_search input:focus {
+  outline: none;
+}
+.header_search input:focus::-moz-placeholder {
+  color: transparent;
+}
+.header_search input:focus:-ms-input-placeholder {
+  color: transparent;
+}
+.header_search input:focus::placeholder {
+  color: transparent;
+}
+
+.btn_search {
+  width: 101px;
+  border-radius: 0 5px 5px 0;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+.btn_search:active {
+  background: rgba(144, 188, 177, 0.441);
+  color: rgba(255, 255, 255, 0.434);
+}
+
+.btn_voice {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 14.38px;
+  right: 118.82px;
+}
+
+.main {
+  padding-top: 57px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.place {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 54px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.time {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  color: #FFFFFF;
+}
+
+.weather_today {
+  display: flex;
+}
+.weather_today_degrees p {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 306px;
+  line-height: 373px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.weather_today_degrees sup {
+  font-size: 100px;
+  line-height: 0px;
+}
+.weather_today_details {
+  padding-top: 154px;
+}
+.weather_today_details p {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 37px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.weather_nextdays {
+  display: flex;
+  gap: 51px;
+}
+
+.nextday p {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+.nextday span {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 80px;
+  line-height: 98px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+}
+
+.coordinates p {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: right;
+  color: #FFFFFF;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url(./fonts/Montserrat-Regular.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(./fonts/Montserrat-SemiBold.ttf);
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url(./fonts/Montserrat-Bold.ttf);
+  font-weight: 700;
+}/*# sourceMappingURL=style.css.map */

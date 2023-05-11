@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header_buttons">
+                <div><button class="btn btn_renovate"><img src="./image/renovate.svg" alt="renovate"></button></div>
+                <div>
+                    <button class="btn btn_language">
+                        <span class="language">EN</span>
+                        <img src="./image/pointer.svg" alt="pointer">
+                    </button>
+                </div>
+                <div class="temperature_buttons">
+                    <button class="btn btn_cel active">°С</button>
+                    <button class="btn btn_far">°F</button>
+                </div>
+            </div>
+            <div class="header_search">
+                <input type="search" placeholder="Search city or ZIP">
+                <button class="btn_voice"><img src="./image/microphone.svg" alt="microphone"></button>
+                <button class="btn btn_search">SEARCH</button>
+            </div>
+        </header>
+        <main class="main">
+            <section class="weather_content">
+                <div class="placetime">
+                    <p class="place">Minsk, Belarus</p>
+                    <p class="time">
+                        <span>Mon 28 October</span>
+                        <span>17:23</span>
+                    </p>
+                </div>
+                <div class="weather_today">
+                    <div class="weather_today_degrees">
+                        <p class="">10<sup>°</sup></p>
+                        <img src="" alt="">
+                    </div>
+                    <div class="weather_today_details">
+                        <p>overcast</p>
+                        <p>Feels like: 7°</p>
+                        <p>Wind: 2 m/s</p>
+                        <p>Humidity: 83%</p>
+                    </div>
+                </div>
+                <div class="weather_nextdays">
+                    <div class="nextday first">
+                        <p>Tuesday</p>
+                        <div>
+                            <span>7°</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="nextday second">
+                        <p>Wednesday</p>
+                        <div>
+                            <span>6°</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="nextday third">
+                        <p>Thursday</p>
+                        <div>
+                            <span>3°</span>
+                            <img src="" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="location_content">
+                <div class="map">
+                    <img src="" alt="">
+                </div>
+                <div class="coordinates">
+                    <p>Latitude: 53°54'</p>
+                    <p>Longitude: 27°34'</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
