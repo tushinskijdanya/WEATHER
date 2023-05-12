@@ -156,22 +156,21 @@
 .weather_today {
     display: flex;
 
-    &_degrees p {
+    &_degrees_elements p {
+        position: relative;
+        left: 18px;
+        bottom: -8px;
         font-family: 'Montserrat';
         font-weight: 700;
-        font-size: 306px;
-        line-height: 373px;
+        font-size: 100px;
+        line-height: 0px;
         text-transform: uppercase;
         color: #FFFFFF;
     }
 
-    &_degrees sup {
-        font-size: 100px;
-        line-height: 0px;
-    }
-
     &_details {
-        padding-top: 154px;
+        padding-left: 92px;
+        padding-bottom: 70px;
 
         & p {
             font-family: 'Montserrat';
@@ -182,6 +181,21 @@
             color: #FFFFFF;
         }
     }
+}
+
+.position {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.weather_today_degrees {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 306px;
+    line-height: 373px;
+    text-transform: uppercase;
+    color: #FFFFFF;
 }
 
 .weather_nextdays {
@@ -207,6 +221,14 @@
         line-height: 98px;
         text-transform: uppercase;
         color: #FFFFFF;
+        align-items: baseline;
+    }
+
+    &_content {
+        padding-top: 15px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
     }
 }
 
@@ -217,6 +239,22 @@
     line-height: 30px;
     text-align: right;
     color: #FFFFFF;
+}
+
+.location_content {
+    padding-top: 87px;
+}
+
+.map {
+    height: 412px;
+    width: 375px;
+    border: 1px solid #FFFFFF;
+    border-radius: 10px;
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 74% 100%, 100% 100%, 93% 92%, 0 92%);
+}
+
+.coordinates {
+    padding-top: 10px;
 }
 
 @font-face {
