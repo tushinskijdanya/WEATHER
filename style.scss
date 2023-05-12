@@ -5,11 +5,14 @@
 }
 
 .container {
-    width: 1440px;
+    margin: 0 auto;
+    max-width: 1440px;
     height: 800px;
     padding: 40px 90px 40px 90px;
-    background: url(./image/bg1.png) no-repeat;
+    background-image: url(./image/bg1.png);
     background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .header {
