@@ -14,10 +14,20 @@
             <div class="header_buttons">
                 <div><button class="btn btn_renovate"><img src="./image/renovate.svg" alt="renovate"></button></div>
                 <div>
-                    <button class="btn btn_language">
+                    <!-- <button class="btn btn_language">
                         <span class="language">EN</span>
                         <img src="./image/pointer.svg" alt="pointer">
                     </button>
+                    <div class="languale">
+                        <button>EN</button>
+                        <button>RU</button>
+                        <button>BY</button>
+                    </div> -->
+                    <select class="btn btn_language">
+                        <option class="language" value="EN" selected>EN</option>
+                        <option class="language" value="RU">RU</option>
+                        <option class="language" value="BY">BEL</option>
+                    </select>
                 </div>
                 <div class="temperature_buttons">
                     <button class="btn btn_cel active">°С</button>
@@ -34,9 +44,9 @@
             <section class="weather_content">
                 <div class="placetime">
                     <p class="place">Minsk, Belarus</p>
-                    <p class="time">
-                        <span>Mon 28 October</span>
-                        <span>17:23</span>
+                    <p class="today">
+                        <!-- <span>Mon 28 October</span>
+                        <span>17:23</span> -->
                     </p>
                 </div>
                 <div class="weather_today">
@@ -56,21 +66,21 @@
                 </div>
                 <div class="weather_nextdays">
                     <div class="nextday first">
-                        <p>Tuesday</p>
+                        <p class="dayfirst"></p>
                         <div class="nextday_content">
                             <span>7°</span>
                             <img src="./image/Group1.svg" alt="weather">
                         </div>
                     </div>
                     <div class="nextday second">
-                        <p>Wednesday</p>
+                        <p class="daysecond"></p>
                         <div class="nextday_content">
                             <span>6°</span>
                             <img src="./image/Group2.svg" alt="weather">
                         </div>
                     </div>
                     <div class="nextday third">
-                        <p>Thursday</p>
+                        <p class="daythird"></p>
                         <div class="nextday_content">
                             <span>3°</span>
                             <img src="./image/Group3.svg" alt="weather">

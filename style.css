@@ -4,18 +4,20 @@
   box-sizing: border-box;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: 1440px;
-  height: 800px;
-  padding: 40px 90px 40px 90px;
+body {
   background-image: url(./image/bg1.png);
-  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
+.container {
+  margin: 0 auto;
+  width: 1260px;
+  padding-top: 40px;
+}
+
 .header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -46,6 +48,26 @@
 
 .btn_language span {
   margin-right: 10px;
+}
+
+.btn_language {
+  width: 71px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url(./image/pointer.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-position-x: calc(100% - 15px);
+}
+.btn_language:hover {
+  background-image: url(./image/pointer.svg);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-position-x: calc(100% - 15px);
+}
+.btn_language:focus {
+  outline: none;
 }
 
 .temperature_buttons {
@@ -146,6 +168,7 @@
 }
 
 .main {
+  width: 100%;
   padding-top: 57px;
   display: flex;
   justify-content: space-between;
@@ -160,12 +183,15 @@
   color: #FFFFFF;
 }
 
-.time {
+.today {
   font-family: "Montserrat";
   font-weight: 600;
   font-size: 24px;
   line-height: 29px;
   color: #FFFFFF;
+}
+.today_time {
+  margin-left: 18px;
 }
 
 .weather_today {
@@ -259,6 +285,9 @@
   border-radius: 10px;
   -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 74% 100%, 100% 100%, 93% 92%, 0 92%);
           clip-path: polygon(0 0, 100% 0%, 100% 100%, 74% 100%, 100% 100%, 93% 92%, 0 92%);
+}
+.map img {
+  height: 100%;
 }
 
 .coordinates {
