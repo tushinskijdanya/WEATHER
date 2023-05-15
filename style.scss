@@ -211,6 +211,10 @@ body {
             text-transform: uppercase;
             color: #FFFFFF;
         }
+
+        & span {
+            text-transform: lowercase;
+        }
     }
 }
 

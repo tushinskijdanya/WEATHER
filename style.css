@@ -220,6 +220,9 @@ body {
   text-transform: uppercase;
   color: #FFFFFF;
 }
+.weather_today_details span {
+  text-transform: lowercase;
+}
 
 .position {
   display: flex;

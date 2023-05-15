@@ -14,6 +14,16 @@ let s = 0;
 let m = 0;
 let h = 0;
 
+// let first_c 
+//     let first_f
+//     let second_c
+//     let second_f
+//     let third_c
+//     let third_f
+//     let first_condit
+//     let second_condit
+//     let third_condit
+
 window.addEventListener('load', () => {
     // getLinkToImage();
     timeBackground();
@@ -76,42 +86,7 @@ function timeBackground () {
   
 //   navigator.geolocation.getCurrentPosition(success, error, options);
 
-let city = 'Moscow'
 
-function getWeather () {
-    const urlf = `https://api.weatherapi.com/v1/forecast.json?key=3e22dd5dd5674b83bdb145823231305&q=${city}&days=4`;
-    fetch(urlf)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-    })
-}
-
-
-
-// let date = new Date();
-// function getWeekDay(date) {
-//     let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
-//     console.log(days[date.getDay() + 1]);
-//   }
-  
-//   let timerId = setInterval(() => getWeekDay(date), 2000);
-
-// let now = new Date()
-// console.log(now)
-
-
-// getWeather ()
-
-// let today = new Date;
-
-// console.log(today.getDay())
-
-
-
-// function getWeatherToday () {
-
-// }
 
 let date = new Date();
 
@@ -131,7 +106,7 @@ function getDateEN (date) {
     sec = date.getSeconds();
 
     document.querySelector('.today').innerHTML = `
-    <span>${showDaysNow} ${day} ${showMonth} <span class="today_time">${hour}:${minutes}:${sec}</span></span>`;
+    <span>${showDaysNow} ${day} ${showMonth} <span class="today_time">${hour}:${minutes}</span></span>`;
 
     document.querySelector('.dayfirst').innerHTML = showDaysNext1;
     document.querySelector('.daysecond').innerHTML = showDaysNext2;
@@ -139,6 +114,7 @@ function getDateEN (date) {
 }
 
 function liveTime () {
+    hour = hour - 0;
     minutes = minutes - 0;
     sec++
     if (sec > 59) {
@@ -150,10 +126,73 @@ function liveTime () {
         minutes = 0;
     }
 
-       s = sec < 10 ? "0" + sec : sec;
+    //    s = sec < 10 ? "0" + sec : sec;
        m = minutes < 10 ? "0" + minutes : minutes;
        h = hour < 10 ? "0" + hour : hour;
 
-       document.querySelector('.today_time').textContent = `${h}:${m}:${s}`;
-       console.log(m)
+       document.querySelector('.today_time').textContent = `${h}:${m}`;
 }
+
+let city = 'Minsk';
+
+function getWeather () {
+    const urlf = `https://api.weatherapi.com/v1/forecast.json?key=3e22dd5dd5674b83bdb145823231305&q=${city}&days=4`;
+    fetch(urlf)
+    .then(res => res.json())
+    .then(data => {
+        getWeatherToday (data.forecast.forecastday[0]);
+        getWeatherNext (data.forecast.forecastday);
+        // getLocation (data.location)
+        // console.log(data.forecast.forecastday[0]);
+    })
+}
+
+function getWeatherToday (data) {
+    hour = hour - 0;
+    let temp_c = data.hour[hour].temp_c;
+    let temp_f = data.hour[hour].temp_f;
+    let condition = data.hour[hour].condition.text;
+    let feelslike_c = data.hour[hour].feelslike_c;
+    let feelslike_f = data.hour[hour].feelslike_f;
+    let wind = data.hour[hour].wind_kph;
+    let humidity = data.hour[hour].humidity;
+
+    document.querySelector('.weather_today_degrees').textContent = temp_c;
+    document.querySelector('.weather_today_details').innerHTML = `
+    <p>${condition}</p>
+    <p>Feels like: ${feelslike_c}°</p>
+    <p>Wind: ${wind} <span>km/s</span></p>
+    <p>Humidity: ${humidity}%</p>`;
+    console.log(hour);
+}
+
+function getWeatherNext (data) {
+    let first_c = data[1].day.avgtemp_c;
+    let first_f = data[1].day.avgtemp_f;
+    let second_c = data[2].day.avgtemp_c;
+    let second_f = data[2].day.avgtemp_f;
+    let third_c = data[3].day.avgtemp_c;
+    let third_f = data[3].day.avgtemp_f;
+    let first_condit = data[1].day.condition.text;
+    let second_condit = data[2].day.condition.text;
+    let third_condit = data[3].day.condition.text;
+
+    document.getElementById('dayfirst').innerHTML = `
+    <span>${first_c}°</span>
+    <img src="./image/Group1.svg" alt="weather">`;
+    document.getElementById('daysecond').innerHTML = `
+    <span>${second_c}°</span>
+    <img src="./image/Group2.svg" alt="weather">`;
+    document.getElementById('daythird').innerHTML = `
+    <span>${third_c}°</span>
+    <img src="./image/Group3.svg" alt="weather">`;
+}
+
+function getLocation (data) {
+    let city = data.name;
+    let country = data.country;
+    let lat = data.lat;
+    let lon = data.lon;
+}
+
+getWeather ()
