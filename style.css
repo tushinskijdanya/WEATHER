@@ -14,6 +14,7 @@ body {
   margin: 0 auto;
   width: 1260px;
   padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .header {
@@ -200,7 +201,7 @@ body {
 .weather_today_degrees_elements p {
   position: relative;
   left: 18px;
-  bottom: -8px;
+  bottom: 50px;
   font-family: "Montserrat";
   font-weight: 700;
   font-size: 100px;
@@ -208,14 +209,20 @@ body {
   text-transform: uppercase;
   color: #FFFFFF;
 }
+.weather_today_degrees_elements img {
+  width: 163px;
+}
 .weather_today_details {
-  padding-left: 92px;
-  padding-bottom: 70px;
+  position: relative;
+  top: -26px;
+  padding-left: 50px;
+  padding-bottom: 85px;
+  min-width: 175px;
 }
 .weather_today_details p {
   font-family: "Montserrat";
   font-weight: 700;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 37px;
   text-transform: uppercase;
   color: #FFFFFF;
@@ -233,7 +240,7 @@ body {
 .weather_today_degrees {
   font-family: "Montserrat";
   font-weight: 700;
-  font-size: 306px;
+  font-size: 250px;
   line-height: 373px;
   text-transform: uppercase;
   color: #FFFFFF;
@@ -255,7 +262,7 @@ body {
 .nextday span {
   font-family: "Montserrat";
   font-weight: 600;
-  font-size: 80px;
+  font-size: 60px;
   line-height: 98px;
   text-transform: uppercase;
   color: #FFFFFF;
