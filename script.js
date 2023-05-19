@@ -128,6 +128,7 @@ function changeLang () {
     if (!allLang.includes(hash)) {
         location.href = `${location.pathname}#en`;
         weathLang = 'lang=en';
+        selectBTN.value = 'en';
         languageEN = true;
     }
     console.log(hash);
@@ -207,13 +208,43 @@ let date = new Date();
 
 function getDate (date) {
     showDaysNow = daysNow[date.getDay()];
-    showDaysNext1 = daysNext[date.getDay() + 1];
-    showDaysNext2 = daysNext[date.getDay() + 2];
-    showDaysNext3 = daysNext[date.getDay() + 3];
     showDaysNowRU = daysNowRU[date.getDay()];
-    showDaysNext1RU = daysNextRU[date.getDay() + 1];
-    showDaysNext2RU = daysNextRU[date.getDay() + 2];
-    showDaysNext3RU = daysNextRU[date.getDay() + 3];
+    // showDaysNext1 = daysNext[date.getDay() + 1];
+    // showDaysNext2 = daysNext[date.getDay() + 2];
+    // showDaysNext3 = daysNext[date.getDay() + 3];
+    // showDaysNext1RU = daysNextRU[date.getDay() + 1];
+    // showDaysNext2RU = daysNextRU[date.getDay() + 2];
+    // showDaysNext3RU = daysNextRU[date.getDay() + 3];
+    if (date.getDay() <= 3) {
+        showDaysNext1 = daysNext[date.getDay() + 1];
+        showDaysNext2 = daysNext[date.getDay() + 2];
+        showDaysNext3 = daysNext[date.getDay() + 3];
+        showDaysNext1RU = daysNextRU[date.getDay() + 1];
+        showDaysNext2RU = daysNextRU[date.getDay() + 2];
+        showDaysNext3RU = daysNextRU[date.getDay() + 3];
+    } else if (date.getDay() == 4) {
+        showDaysNext1 = daysNext[date.getDay() + 1];
+        showDaysNext2 = daysNext[date.getDay() + 2];
+        showDaysNext3 = daysNext[0];
+        showDaysNext1RU = daysNextRU[date.getDay() + 1];
+        showDaysNext2RU = daysNextRU[date.getDay() + 2];
+        showDaysNext3RU = daysNextRU[0];
+    } else if (date.getDay() == 5) {
+        showDaysNext1 = daysNext[date.getDay() + 1];
+        showDaysNext2 = daysNext[0];
+        showDaysNext3 = daysNext[1];
+        showDaysNext1RU = daysNextRU[date.getDay() + 1];
+        showDaysNext2RU = daysNextRU[0];
+        showDaysNext3RU = daysNextRU[1];
+    } else if (date.getDay() == 6) {
+        showDaysNext1 = daysNext[0];
+        showDaysNext2 = daysNext[1];
+        showDaysNext3 = daysNext[2];
+        showDaysNext1RU = daysNextRU[0];
+        showDaysNext2RU = daysNextRU[1];
+        showDaysNext3RU = daysNextRU[2];
+    }
+    
     day = date.getDate();
 
     showMonth = month[date.getMonth()];
@@ -332,7 +363,51 @@ function getLocation (data) {
     let lat = data.lat;
     let lon = data.lon;
 
+    console.log(lat, lon);
+
+    let latleg = lat.toString().split('.').map(e=>e.length).concat(0).slice(0,2);
+    let lonleg = lon.toString().split('.').map(e=>e.length).concat(0).slice(0,2);
+
+    [a,b] = latleg;
+    [c,d] = lonleg;
+
+    if (a < 2 && b < 2) {
+        lat = '0' + lat + '0';
+    } else if (a < 2 && b == 2) {
+        lat = '0' + lat;
+    } else if (a == 2 && b < 2) {
+        lat = lat + '0';
+    } else {
+        lat = lat + '';
+    }
+
+    if (c < 2 && d < 2) {
+        lon = '0' + lon + '0';
+    } else if (c < 2 && d == 2) {
+        lon = '0' + lon;
+    } else if (c == 2 && d < 2) {
+        lon = lon + '0';
+    } else {
+        lon = lon + '';
+    }
+
+    let lati = `${lat.slice(0, 2)}°${lat.slice(3)}'`;
+    let loni = `${lon.slice(0, 2)}°${lon.slice(3)}'`;
+    console.log(lati);
+    console.log(loni);
+
+
     document.querySelector('.place').textContent = `${city}, ${country}`;
+
+    if (languageEN) {
+        document.querySelector('.coordinates').innerHTML = `
+        <p>Latitude: ${lati}</p>
+        <p>Longitude: ${loni}</p>`
+    } else {
+        document.querySelector('.coordinates').innerHTML = `
+        <p>Широта: ${lati}</p>
+        <p>Долгота: ${loni}</p>`
+    }
 }
 
 getPlace ()
