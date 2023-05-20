@@ -11,69 +11,71 @@
     <title>Weather</title>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="header_buttons">
-                <div><button class="btn btn_renovate"><img src="./image/renovate.svg" alt="renovate"></button></div>
-                <div>
+    <div class="background_container">
+        <div class="container">
+            <header class="header">
+                <div class="header_buttons">
+                    <div><button class="btn btn_renovate"><img src="./image/renovate.svg" alt="renovate"></button></div>
+                    <div>
                     <select class="btn btn_language">
                         <option class="language" value="en" selected>EN</option>
                         <option class="language" value="ru">RU</option>
                     </select>
-                </div>
-                <div class="temperature_buttons">
+                    </div>
+                    <div class="temperature_buttons">
                     <button class="btn btn_cel active">°С</button>
                     <button class="btn btn_far">°F</button>
-                </div>
-            </div>
-            <div class="header_search">
-                <div class='title_block'></div>
-                <input type="search" placeholder="Search city or ZIP">
-                <button class="btn_voice"><img src="./image/microphone.svg" alt="microphone"></button>
-                <button class="btn btn_search">SEARCH</button>
-            </div>
-        </header>
-        <main class="main">
-            <section class="weather_content">
-                <div class="placetime">
-                    <p class="place"></p>
-                    <p class="today">
-                    </p>
-                </div>
-                <div class="weather_today">
-                    <p class="weather_today_degrees"></p>
-                    <div class="position">
-                        <div class="weather_today_degrees_elements">
-                        </div>
-                        <div class="weather_today_details">
-                        </div>
                     </div>
                 </div>
-                <div class="weather_nextdays">
-                    <div class="nextday first">
-                        <p class="dayfirst"></p>
-                        <div id="dayfirst" class="nextday_content">
+                <div class="header_search">
+                    <div class='title_block'></div>
+                    <input type="search" placeholder="Search city or ZIP">
+                    <button class="btn_voice"><img src="./image/microphone.svg" alt="microphone"></button>
+                    <button class="btn btn_search">SEARCH</button>
+                </div>
+            </header>
+            <main class="main">
+                <section class="weather_content">
+                    <div class="placetime">
+                        <p class="place"></p>
+                        <p class="today">
+                        </p>
+                    </div>
+                    <div class="weather_today">
+                        <p class="weather_today_degrees"></p>
+                        <div class="position">
+                            <div class="weather_today_degrees_elements">
+                            </div>
+                            <div class="weather_today_details">
+                            </div>
                         </div>
                     </div>
-                    <div class="nextday second">
-                        <p class="daysecond"></p>
-                        <div id="daysecond" class="nextday_content">
+                    <div class="weather_nextdays">
+                        <div class="nextday first">
+                            <p class="dayfirst"></p>
+                            <div id="dayfirst" class="nextday_content">
+                            </div>
+                        </div>
+                        <div class="nextday second">
+                            <p class="daysecond"></p>
+                            <div id="daysecond" class="nextday_content">
+                            </div>
+                        </div>
+                        <div class="nextday third">
+                            <p class="daythird"></p>
+                            <div id="daythird" class="nextday_content">
+                            </div>
                         </div>
                     </div>
-                    <div class="nextday third">
-                        <p class="daythird"></p>
-                        <div id="daythird" class="nextday_content">
-                        </div>
+                </section>
+                <section class="location_content">
+                    <div id="map">
                     </div>
-                </div>
-            </section>
-            <section class="location_content">
-                <div id="map">
-                </div>
-                <div class="coordinates">
-                </div>
-            </section>
-        </main>
+                    <div class="coordinates">
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

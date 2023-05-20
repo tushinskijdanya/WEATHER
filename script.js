@@ -7,7 +7,6 @@ const selectBTN = document.querySelector('.btn_language');
 const input = document.querySelector('input');
 
 let time;
-let timer;
 
 let daysNow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 let daysNext = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -64,13 +63,25 @@ let tempF = 0;
 
 let weathLang = 'lang=en';
 
-window.addEventListener('load', () => {
-    // whatDegress ();
-    // getLinkToImage();
-    timeBackground();
-    getDate(date);
-    timer = setInterval(liveTime, 1000);
-})
+let timerId;
+
+let options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+let date = new Date();
+
+getLinkToImage();
+timeBackground();
+let timer = setInterval(liveTime, 1000);
+getDate(date);
+whatDegress ();
+getPlaceStart ();
+navigator.geolocation.getCurrentPosition(success, error, options);
+changeLang ();
+mainPage ();
 
 renovate.addEventListener('click', () => {
     getLinkToImage();
@@ -101,10 +112,11 @@ input.addEventListener('change', () => {
 })
 
 input.addEventListener('mouseover', () => {
-    setTimeout(viewBlock, 1500);
+    timerId = setTimeout(viewBlock, 1500);
 })
 
 input.addEventListener('mouseout', () => {
+    clearTimeout(timerId);
     document.querySelector('.title_block').style.display = 'none';
 })
 
@@ -130,8 +142,6 @@ function changeLangURL () {
         getDate (date);
         mainPage ();
     }
-
-    // location.reload();
 }
 
 function changeLang () {
@@ -156,8 +166,6 @@ function changeLang () {
     console.log(hash);
 }
 
-changeLang ()
-
 function mainPage () {
     if (languageEN) {
         document.querySelector('title').innerHTML = 'Weather';
@@ -171,8 +179,6 @@ function mainPage () {
         document.querySelector('.title_block').innerHTML = 'Введите название города!';
     }
 }
-
-mainPage ()
 
 function getLinkToImage () {
     const url = 'https://api.unsplash.com/photos/random?query=morning&client_id=kEMMOHYjWKMGEGObyhH1PWLb_Qmg-27Nfm_Dxnlo5lE';
@@ -192,7 +198,7 @@ function timeBackground () {
     time = setInterval(getLinkToImage, 3600000);
 }
 
-function getPlace () {
+function getPlaceStart () {
     const url = 'https://ipinfo.io/json?token=04b21bb6bb2be7';
     fetch(url)
     .then(res => res.json())
@@ -201,33 +207,22 @@ function getPlace () {
         console.log(data)
     })
 }
-
-
-let options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
   
-  function success(pos) {
-    let crd = pos.coords;
-
-    let lat = crd.latitude;
-    let long = crd.longitude;
-
-    place = `${crd.latitude},${crd.longitude}`;
-
-    getWeather (place)
-  };
+function success(pos) {
+let crd = pos.coords;
+place = `${crd.latitude},${crd.longitude}`;
+getWeather (place);
+};
   
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  };
-  
-  navigator.geolocation.getCurrentPosition(success, error, options);
+function error(err) {
+cons.warn(`ERROR(${err.code}): ${err.message}`);
+};
 
-
-let date = new Date();
+// navigator.geolocation.getCurrentPosition((pos) => {
+//     let crd = pos.coords;
+//     place = `${crd.latitude},${crd.longitude}`;
+//     getWeather (place);
+// })
 
 function getDate (date) {
     showDaysNow = daysNow[date.getDay()];
@@ -430,10 +425,6 @@ function getLocation (data) {
     }
 }
 
-getPlace ()
-// getWeather (place)
-console.log(hour)
-
 function getTempF () {
     document.querySelector('.btn_far').classList.add('active');
     document.querySelector('.btn_cel').classList.remove('active');
@@ -495,8 +486,6 @@ function whatDegress () {
     }
     console.log(typeof(tempF))
 }
-
-whatDegress ()
 
 function showMap (lon, lat) {
     mapboxgl.accessToken = 'pk.eyJ1IjoiZmxvd29yZHMiLCJhIjoiY2xodXYzcGRzMDNsczNmcGNnNWN6eTBpcyJ9.9koqRSPP_hm-R6GY6MwnHw';
