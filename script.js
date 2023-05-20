@@ -4,6 +4,8 @@ const degress = document.querySelector('.temperature_buttons');
 
 const selectBTN = document.querySelector('.btn_language');
 
+const input = document.querySelector('input');
+
 let time;
 let timer;
 
@@ -58,11 +60,12 @@ let place;
 let languageEN = true;
 const allLang = ['en', 'ru'];
 
-let tempF = false;
+let tempF = 0;
 
 let weathLang = 'lang=en';
 
 window.addEventListener('load', () => {
+    // whatDegress ();
     // getLinkToImage();
     timeBackground();
     getDate(date);
@@ -78,11 +81,13 @@ degress.addEventListener('click', (e) => {
     switch(e.target.textContent) {
         case '°F':
             languageEN ? getTempF() : getTempFRu ();
-            tempF = true;
+            tempF = 1;
+            localStorage.setItem("tempF", tempF);
         break
         case '°С':
             languageEN ? getTempC () : getTempCRu ();
-            tempF = false;
+            tempF = 0;
+            localStorage.setItem("tempF", tempF);
         break
     }
     console.log(e.target.textContent)
@@ -90,18 +95,35 @@ degress.addEventListener('click', (e) => {
 
 selectBTN.addEventListener ('change', changeLangURL);
 
+input.addEventListener('change', () => {
+    place = input.value;
+    getWeather (place);
+})
+
+input.addEventListener('mouseover', () => {
+    setTimeout(viewBlock, 1500);
+})
+
+input.addEventListener('mouseout', () => {
+    document.querySelector('.title_block').style.display = 'none';
+})
+
+function viewBlock () {
+    document.querySelector('.title_block').style.display = 'block';
+}
+
 function changeLangURL () {
     let lang = selectBTN.value;
     location.href = `${location.pathname}#${lang}`;
     if (lang == 'ru') {
-        tempF ? getTempFRu () : getTempCRu ();
+        tempF == 1 ? getTempFRu () : getTempCRu ();
         weathLang = 'lang=ru';
         getWeather (place);
         languageEN = false;
         getDate (date);
         mainPage ();
     } else if (lang == 'en') {
-        tempF ? getTempF () : getTempC ();
+        tempF == 1 ? getTempF () : getTempC ();
         weathLang = 'lang=en';
         getWeather (place);
         languageEN = true;
@@ -139,12 +161,14 @@ changeLang ()
 function mainPage () {
     if (languageEN) {
         document.querySelector('title').innerHTML = 'Weather';
-        document.querySelector('input').placeholder = 'Search city or ZIP';
+        document.querySelector('input').placeholder = 'Search city';
         document.querySelector('.btn_search').innerHTML = 'SEARCH';
+        document.querySelector('.title_block').innerHTML = 'Enter the name of the city!';
     } else {
         document.querySelector('title').innerHTML = 'Погода';
-        document.querySelector('input').placeholder = 'Поиск города или ZIP';
+        document.querySelector('input').placeholder = 'Поиск города';
         document.querySelector('.btn_search').innerHTML = 'ПОИСК';
+        document.querySelector('.title_block').innerHTML = 'Введите название города!';
     }
 }
 
@@ -203,18 +227,12 @@ let options = {
   navigator.geolocation.getCurrentPosition(success, error, options);
 
 
-
 let date = new Date();
 
 function getDate (date) {
     showDaysNow = daysNow[date.getDay()];
     showDaysNowRU = daysNowRU[date.getDay()];
-    // showDaysNext1 = daysNext[date.getDay() + 1];
-    // showDaysNext2 = daysNext[date.getDay() + 2];
-    // showDaysNext3 = daysNext[date.getDay() + 3];
-    // showDaysNext1RU = daysNextRU[date.getDay() + 1];
-    // showDaysNext2RU = daysNextRU[date.getDay() + 2];
-    // showDaysNext3RU = daysNextRU[date.getDay() + 3];
+
     if (date.getDay() <= 3) {
         showDaysNext1 = daysNext[date.getDay() + 1];
         showDaysNext2 = daysNext[date.getDay() + 2];
@@ -351,9 +369,9 @@ function getWeatherNext (data) {
 
 function getWeatherENorRU () {
     if (languageEN) {
-        tempF ? getTempF () : getTempC ();
+        tempF == 1 ? getTempF () : getTempC ();
     } else {
-        tempF ? getTempFRu () : getTempCRu ();
+        tempF == 1 ? getTempFRu () : getTempCRu ();
     }
 }
 
@@ -362,6 +380,8 @@ function getLocation (data) {
     let country = data.country;
     let lat = data.lat;
     let lon = data.lon;
+
+    showMap (lon, lat)
 
     console.log(lat, lon);
 
@@ -464,4 +484,29 @@ function getTempCRu () {
     <p>Ощущается: ${feelslike_c}°</p>
     <p>Ветер: ${wind} <span>км/с</span></p>
     <p>Влажность: ${humidity}%</p>`;
+}
+
+function whatDegress () {
+    tempF = localStorage.getItem("tempF");
+    if (tempF == 1) {
+        languageEN ? getTempF() : getTempFRu ()
+    } else {
+        languageEN ? getTempC () : getTempCRu ();
+    }
+    console.log(typeof(tempF))
+}
+
+whatDegress ()
+
+function showMap (lon, lat) {
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZmxvd29yZHMiLCJhIjoiY2xodXYzcGRzMDNsczNmcGNnNWN6eTBpcyJ9.9koqRSPP_hm-R6GY6MwnHw';
+    const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v12',
+    center: [lon, lat],
+    zoom: 8
+    });
+    const marker1 = new mapboxgl.Marker()
+    .setLngLat([lon, lat])
+    .addTo(map);
 }

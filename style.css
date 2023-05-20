@@ -200,8 +200,8 @@ body {
 }
 .weather_today_degrees_elements p {
   position: relative;
-  left: 18px;
-  bottom: 50px;
+  left: 10px;
+  bottom: 25px;
   font-family: "Montserrat";
   font-weight: 700;
   font-size: 100px;
@@ -210,11 +210,11 @@ body {
   color: #FFFFFF;
 }
 .weather_today_degrees_elements img {
-  width: 163px;
+  width: 130px;
 }
 .weather_today_details {
   position: relative;
-  top: -26px;
+  top: -16px;
   padding-left: 50px;
   padding-bottom: 85px;
   min-width: 175px;
@@ -222,7 +222,7 @@ body {
 .weather_today_details p {
   font-family: "Montserrat";
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 37px;
   text-transform: uppercase;
   color: #FFFFFF;
@@ -240,7 +240,7 @@ body {
 .weather_today_degrees {
   font-family: "Montserrat";
   font-weight: 700;
-  font-size: 250px;
+  font-size: 210px;
   line-height: 373px;
   text-transform: uppercase;
   color: #FFFFFF;
@@ -288,7 +288,7 @@ body {
   padding-top: 87px;
 }
 
-.map {
+#map {
   height: 412px;
   width: 375px;
   border: 1px solid #FFFFFF;
@@ -296,12 +296,27 @@ body {
   -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 74% 100%, 100% 100%, 93% 92%, 0 92%);
           clip-path: polygon(0 0, 100% 0%, 100% 100%, 74% 100%, 100% 100%, 93% 92%, 0 92%);
 }
-.map img {
+#map img {
   height: 100%;
 }
 
 .coordinates {
   padding-top: 10px;
+}
+
+.title_block {
+  display: none;
+  position: absolute;
+  left: -170px;
+  top: -30px;
+  padding: 4px;
+  background: rgb(4, 25, 40);
+  border-radius: 3px;
+  border: 1px solid rgb(40, 146, 116);
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 14px;
+  color: rgb(40, 146, 116);
 }
 
 @font-face {
