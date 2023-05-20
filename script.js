@@ -1,12 +1,8 @@
-//Блок контроля
 const renovate = document.querySelector('.btn_renovate');
 const degress = document.querySelector('.temperature_buttons');
-
 const selectBTN = document.querySelector('.btn_language');
 
 const input = document.querySelector('input');
-
-let time;
 
 let daysNow = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 let daysNext = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -65,21 +61,19 @@ let weathLang = 'lang=en';
 
 let timerId;
 
-let options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-
 let date = new Date();
 
 getLinkToImage();
-timeBackground();
-let timer = setInterval(liveTime, 1000);
+let time = setInterval(getLinkToImage, 3600000);
 getDate(date);
+let timer = setInterval(liveTime, 1000);
 whatDegress ();
 getPlaceStart ();
-navigator.geolocation.getCurrentPosition(success, error, options);
+navigator.geolocation.getCurrentPosition((pos) => {
+    let crd = pos.coords;
+    place = `${crd.latitude},${crd.longitude}`;
+    getWeather (place);
+});
 changeLang ();
 mainPage ();
 
@@ -101,7 +95,6 @@ degress.addEventListener('click', (e) => {
             localStorage.setItem("tempF", tempF);
         break
     }
-    console.log(e.target.textContent)
 })
 
 selectBTN.addEventListener ('change', changeLangURL);
@@ -163,7 +156,6 @@ function changeLang () {
         selectBTN.value = 'en';
         languageEN = true;
     }
-    console.log(hash);
 }
 
 function mainPage () {
@@ -194,10 +186,6 @@ function changeBackground(data) {
     document.querySelector('body').style.backgroundImage = `url(${data})`;
 }
 
-function timeBackground () {
-    time = setInterval(getLinkToImage, 3600000);
-}
-
 function getPlaceStart () {
     const url = 'https://ipinfo.io/json?token=04b21bb6bb2be7';
     fetch(url)
@@ -213,16 +201,18 @@ let crd = pos.coords;
 place = `${crd.latitude},${crd.longitude}`;
 getWeather (place);
 };
-  
-function error(err) {
-cons.warn(`ERROR(${err.code}): ${err.message}`);
-};
 
-// navigator.geolocation.getCurrentPosition((pos) => {
-//     let crd = pos.coords;
-//     place = `${crd.latitude},${crd.longitude}`;
-//     getWeather (place);
-// })
+// let options = {
+//     enableHighAccuracy: true,
+//     timeout: 5000,
+//     maximumAge: 0
+//   };
+  
+// function error(err) {
+// cons.warn(`ERROR(${err.code}): ${err.message}`);
+// };
+
+// navigator.geolocation.getCurrentPosition(success, error, options);
 
 function getDate (date) {
     showDaysNow = daysNow[date.getDay()];
@@ -308,8 +298,6 @@ function liveTime () {
        document.querySelector('.today_time').textContent = `${h}:${m}`;
 }
 
-// let place = 'Gomel';
-
 function getWeather (place) {
     const urlf = `https://api.weatherapi.com/v1/forecast.json?key=3e22dd5dd5674b83bdb145823231305&q=${place}&days=4&${weathLang}`;
     fetch(urlf)
@@ -318,9 +306,7 @@ function getWeather (place) {
         getWeatherToday (data.forecast.forecastday[0]);
         getWeatherNext (data.forecast.forecastday);
         getLocation (data.location);
-        console.log(data);
     })
-    console.log(place)
 }
 
 function getWeatherToday (data) {
@@ -378,8 +364,6 @@ function getLocation (data) {
 
     showMap (lon, lat)
 
-    console.log(lat, lon);
-
     let latleg = lat.toString().split('.').map(e=>e.length).concat(0).slice(0,2);
     let lonleg = lon.toString().split('.').map(e=>e.length).concat(0).slice(0,2);
 
@@ -408,9 +392,6 @@ function getLocation (data) {
 
     let lati = `${lat.slice(0, 2)}°${lat.slice(3)}'`;
     let loni = `${lon.slice(0, 2)}°${lon.slice(3)}'`;
-    console.log(lati);
-    console.log(loni);
-
 
     document.querySelector('.place').textContent = `${city}, ${country}`;
 
