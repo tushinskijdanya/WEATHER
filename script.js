@@ -415,7 +415,7 @@ function getTempF () {
     document.querySelector('.weather_today_details').innerHTML = `
     <p>${condition}</p>
     <p>Feels like: ${feelslike_f}°</p>
-    <p>Wind: ${wind} <span>km/s</span></p>
+    <p>Wind: ${wind} <span>km/h</span></p>
     <p>Humidity: ${humidity}%</p>`;
 }
 
@@ -428,7 +428,7 @@ function getTempC () {
     document.querySelector('.weather_today_details').innerHTML = `
     <p>${condition}</p>
     <p>Feels like: ${feelslike_c}°</p>
-    <p>Wind: ${wind} <span>km/s</span></p>
+    <p>Wind: ${wind} <span>km/h</span></p>
     <p>Humidity: ${humidity}%</p>`;
 }
 
@@ -441,7 +441,7 @@ function getTempFRu () {
     document.querySelector('.weather_today_details').innerHTML = `
     <p>${condition}</p>
     <p>Ощущается: ${feelslike_f}°</p>
-    <p>Ветер: ${wind} <span>км/с</span></p>
+    <p>Ветер: ${wind} <span>км/ч</span></p>
     <p>Влажность: ${humidity}%</p>`;
 }
 
@@ -454,7 +454,7 @@ function getTempCRu () {
     document.querySelector('.weather_today_details').innerHTML = `
     <p>${condition}</p>
     <p>Ощущается: ${feelslike_c}°</p>
-    <p>Ветер: ${wind} <span>км/с</span></p>
+    <p>Ветер: ${wind} <span>км/ч</span></p>
     <p>Влажность: ${humidity}%</p>`;
 }
 
